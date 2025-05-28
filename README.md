@@ -1,3 +1,3 @@
 # hueify-log-trace
 
-Colored logging and tracebacks.
+Colored logging and tracebacks with filtering capabilities.
