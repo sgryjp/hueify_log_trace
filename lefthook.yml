@@ -1,0 +1,21 @@
+pre-push:
+  parallel: true
+  jobs:
+    - name: mypy
+      tags:
+        - static type checking
+      run: uv run -- mypy -p hueify_log_trace
+
+    - name: pyright
+      tags:
+        - static type checking
+      run: uv run -- pyright
+
+pre-commit:
+  parallel: true
+  jobs:
+    - name: ruff check
+      run: uv run -- ruff check --output-format concise .
+
+    - name: ruff format
+      run: uv run -- ruff format --check

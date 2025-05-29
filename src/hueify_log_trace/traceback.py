@@ -88,26 +88,29 @@ def format_exception(
        `ValueError`.
 
     Note that the path separators in the file paths are **normalized to forward slashes
-    (``/``)** for consistency across different platforms. Specifically, when checking
+    (`/`)** for consistency across different platforms. Specifically, when checking
     against the `allow_list`, the absolute file paths are converted to POSIX format
     using `Path.absolute().as_posix()`.
 
-    Parameters
-    ----------
-    exc : BaseException
-        The exception instance.
+    Args:
+        exc (BaseException):
+            The exception instance.
 
-    file : IO[str] | None, default=None
-        Optional file-like object to write to. If ``None``, returns a string.
+        file (IO[str] | None):
+            Optional file-like object to write to. If `None`, returns a string.
+            Defaults to `None`.
 
-    allow_list : Sequence[Pattern[str] | str] | None, default=None
-        Optional sequence of regular expression patterns to filter stack frames.
+        allow_list (Sequence[Pattern[str] | str] | None):
+            Optional sequence of regular expression patterns to filter stack frames.
+            Defaults to `None`.
 
-    Returns
-    -------
-    str | None
-        A printable string representation of the exception if ``file`` is None,
-        otherwise ``None``.
+        deny_list (Sequence[Pattern[str] | str] | None):
+            Optional sequence of regular expression patterns to filter stack frames.
+            Defaults to `None`.
+
+    Returns:
+        A str which is a printable representation of the exception if `file` is `None`,
+        otherwise `None`.
 
     """
     if allow_list is not None and deny_list is not None:
