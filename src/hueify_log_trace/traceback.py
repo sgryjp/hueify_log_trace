@@ -3,7 +3,7 @@
 This module provides utilities for formatting exception tracebacks with colored output.
 The main component is:
 
-- `format_exception`: A function that formats exceptions with colored output
+- ``format_exception``: A function that formats exceptions with colored output
 
 It extends Python's built-in traceback functionality by adding syntax highlighting
 and filtering capabilities, making stack traces more readable in terminal environments.
@@ -12,8 +12,8 @@ The main function is ``format_exception``, which takes an exception instance and
 a colorized string representation of the traceback, similar to the standard library's
 ``traceback.format_exception``, but with improved readability through color coding.
 
-The module also supports filtering stack frames using regex patterns to focus on
-relevant parts of the traceback.
+The module also supports filtering stack frames using regular expression patterns to
+focus on relevant parts of the traceback.
 """
 
 from __future__ import annotations
@@ -75,42 +75,45 @@ def format_exception(
     """Format exception information with colored output and optional filtering.
 
     This function formats the given exception's traceback and message in very similar
-    format to the standard library's `traceback.format_exception`, but with added
+    format to the standard library's ``traceback.format_exception``, but with added
     colorization for better readability in terminal environments.
 
     The filtering process is as follows:
 
-    1. If `allow_list` is provided, only stack frames of which absolute file paths match
-       any of the patterns in `allow_list` will be included.
-    2. If `deny_list` is provided, stack frames of which absolute file paths match
-       any of the patterns in `deny_list` will be excluded from the output.
-    3. If both `allow_list` and `deny_list` are provided, this function will raise a
-       `ValueError`.
+    1. If ``allow_list`` is provided, only stack frames of which absolute file paths
+       match any of the patterns in ``allow_list`` will be included.
+    2. If ``deny_list`` is provided, stack frames of which absolute file paths match
+       any of the patterns in ``deny_list`` will be excluded from the output.
+    3. If both ``allow_list`` and ``deny_list`` are provided, this function will raise a
+       ``ValueError``.
 
     Note that the path separators in the file paths are **normalized to forward slashes
     (`/`)** for consistency across different platforms. Specifically, when checking
-    against the `allow_list`, the absolute file paths are converted to POSIX format
-    using `Path.absolute().as_posix()`.
+    against the ``allow_list``, the absolute file paths are converted to POSIX format
+    using ``Path.absolute().as_posix()``.
 
-    Args:
-        exc (BaseException):
-            The exception instance.
+    Parameters
+    ----------
+    exc : BaseException
+        The exception instance.
 
-        file (IO[str] | None):
-            Optional file-like object to write to. If `None`, returns a string.
-            Defaults to `None`.
+    file : IO[str] | None
+        Optional file-like object to write to. If ``None``, returns a string.
+        Defaults to ``None``.
 
-        allow_list (Sequence[Pattern[str] | str] | None):
-            Optional sequence of regular expression patterns to filter stack frames.
-            Defaults to `None`.
+    allow_list : Sequence[Pattern[str] | str] | None
+        Optional sequence of regular expression patterns to filter stack frames.
+        Defaults to ``None``.
 
-        deny_list (Sequence[Pattern[str] | str] | None):
-            Optional sequence of regular expression patterns to filter stack frames.
-            Defaults to `None`.
+    deny_list : Sequence[Pattern[str] | str] | None
+        Optional sequence of regular expression patterns to filter stack frames.
+        Defaults to ``None``.
 
-    Returns:
-        A str which is a printable representation of the exception if `file` is `None`,
-        otherwise `None`.
+    Returns
+    -------
+    str | None
+        A str which is a printable representation of the exception if ``file`` is
+        ``None``, otherwise `None`.
 
     """
     if allow_list is not None and deny_list is not None:
